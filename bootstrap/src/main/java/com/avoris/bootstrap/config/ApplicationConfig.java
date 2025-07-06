@@ -13,23 +13,22 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfig {
 
     @Bean
-    public SearchService searchService(SearchEventPort searchEventPort, SearchPersistencePort searchPersistencePort) {
+    SearchService searchService(SearchEventPort searchEventPort, SearchPersistencePort searchPersistencePort) {
         return new SearchService(searchEventPort, searchPersistencePort);
     }
 
     @Bean
-
-    public PublishSearchUseCase publishSearchUseCase(SearchService searchService) {
+    PublishSearchUseCase publishSearchUseCase(SearchService searchService) {
         return searchService;
     }
 
     @Bean
-    public SearchCountQuery searchCountQuery(SearchService searchService) {
+    SearchCountQuery searchCountQuery(SearchService searchService) {
         return searchService;
     }
 
     @Bean
-    public SearchCreatedEventListener searchCreatedEventListener(SearchService searchService) {
+    SearchCreatedEventListener searchCreatedEventListener(SearchService searchService) {
         return searchService;
     }
 }

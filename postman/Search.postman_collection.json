@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"hotelId\": \"1234abc\",\r\n    \"checkIn\": \"29/12/2023\",\r\n    \"checkOut\": \"31/12/2023\",\r\n    \"ages\": [30, 29, 1, 3]\r\n}",
+					"raw": "{\r\n    \"hotelId\": \"1234abc\",\r\n    \"checkIn\": \"29/12/2025\",\r\n    \"checkOut\": \"31/12/2025\",\r\n    \"ages\": [30, 29, 1, 3]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -52,7 +52,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/count?searchId=1234abc",
+					"raw": "localhost:8080/api/v1/count?searchId=1bc34a0d-8889-4806-adc7-4ed73d905785",
 					"host": [
 						"localhost"
 					],
@@ -65,7 +65,7 @@
 					"query": [
 						{
 							"key": "searchId",
-							"value": "1234abc"
+							"value": "1bc34a0d-8889-4806-adc7-4ed73d905785"
 						}
 					]
 				}
