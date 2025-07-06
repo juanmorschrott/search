@@ -3,7 +3,7 @@ package com.avoris.domain;
 import java.time.LocalDate;
 import java.util.List;
 
-public class    Search {
+public class Search {
 
     private String hotelId;
     private LocalDate checkIn;

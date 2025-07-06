@@ -43,7 +43,8 @@ public class SearchCount {
         private Search search;
         private Long count;
 
-        public Builder() {}
+        public Builder() {
+        }
 
         public Builder searchId(String searchId) {
             this.searchId = searchId;

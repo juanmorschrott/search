@@ -1,4 +1,4 @@
-package com.avoris.bootstrap.config;
+package com.avoris.infrastructure.config;
 
 import com.avoris.infrastructure.in.rest.mapper.SearchCountToSearchCountResponseDtoConverter;
 import com.avoris.infrastructure.in.rest.mapper.SearchRequestDtoToSearchConverter;
