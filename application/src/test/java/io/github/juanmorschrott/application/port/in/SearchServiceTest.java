@@ -1,0 +1,61 @@
+package io.github.juanmorschrott.application.port.in;
+
+import io.github.juanmorschrott.application.port.out.SearchEventPort;
+import io.github.juanmorschrott.application.port.out.SearchPersistencePort;
+import io.github.juanmorschrott.application.service.SearchService;
+import io.github.juanmorschrott.domain.model.Search;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class SearchServiceTest {
+
+    @InjectMocks
+    private SearchService searchService;
+
+    @Mock
+    private SearchPersistencePort searchPersistencePort;
+
+    @Mock
+    private SearchEventPort searchEventPort;
+
+    @Test
+    void publishTest() {
+        Search search = new Search(null, null, null, null);
+
+        searchService.publish(search);
+
+        verify(searchEventPort).sendMessage(anyString(), any());
+    }
+
+    @Test
+    void listenTest() {
+
+        searchService.listen("searchId", new Search(null, null, null, null));
+
+        verify(searchPersistencePort).save(anyString(), any());
+    }
+
+    @Test
+    void searchTest() {
+        Search search = new Search("fakeHotelId", LocalDate.now(), LocalDate.now(), List.of(20, 24));
+
+        when(searchPersistencePort.findById(anyString())).thenReturn(search);
+
+        searchService.search("fakeSearchId");
+
+        verify(searchPersistencePort).findById(anyString());
+        verify(searchPersistencePort).countSearchesByCriteria(anyString(), any(), any());
+    }
+}

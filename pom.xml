@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.avoris</groupId>
+    <groupId>io.github.juanmorschrott</groupId>
     <artifactId>search</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -37,17 +37,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.avoris</groupId>
+                <groupId>io.github.juanmorschrott</groupId>
                 <artifactId>application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.avoris</groupId>
+                <groupId>io.github.juanmorschrott</groupId>
                 <artifactId>domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.avoris</groupId>
+                <groupId>io.github.juanmorschrott</groupId>
                 <artifactId>infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
