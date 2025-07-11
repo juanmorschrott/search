@@ -11,11 +11,9 @@ public class SearchRequestDtoToSearchConverter implements Converter<SearchReques
     @Override
     public Search convert(SearchRequestDto searchRequestDto) {
 
-        return new Search.Builder()
-                .hotelId(searchRequestDto.getHotelId())
-                .checkIn(searchRequestDto.getCheckIn())
-                .checkOut(searchRequestDto.getCheckOut())
-                .ages(searchRequestDto.getAges())
-                .build();
+        return new Search(searchRequestDto.getHotelId(),
+                searchRequestDto.getCheckIn(),
+                searchRequestDto.getCheckOut(),
+                searchRequestDto.getAges());
     }
 }

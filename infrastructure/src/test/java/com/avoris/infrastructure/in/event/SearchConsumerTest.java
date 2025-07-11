@@ -28,7 +28,7 @@ public class SearchConsumerTest {
     @Test
     void testListen() {
         String searchId = UUID.randomUUID().toString();
-        Search search = new Search();
+        Search search = new Search(null, null, null, null);
         ConsumerRecord<String, Search> consumerRecord = new ConsumerRecord<>("hotel_availability_searches",
                 0, 0, searchId, search);
 

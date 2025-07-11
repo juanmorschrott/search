@@ -12,10 +12,10 @@ public class SearchToSearchEntityConverter implements Converter<Search, SearchEn
     public SearchEntity convert(Search search) {
 
         SearchEntity searchEntity = new SearchEntity();
-        searchEntity.setHotelId(search.getHotelId());
-        searchEntity.setCheckIn(search.getCheckIn());
-        searchEntity.setCheckOut(search.getCheckOut());
-        searchEntity.setAges(search.getAges());
+        searchEntity.setHotelId(search.hotelId());
+        searchEntity.setCheckIn(search.checkIn());
+        searchEntity.setCheckOut(search.checkOut());
+        searchEntity.setAges(search.ages());
 
         return searchEntity;
     }

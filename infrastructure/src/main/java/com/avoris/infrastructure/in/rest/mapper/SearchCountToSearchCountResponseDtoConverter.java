@@ -12,16 +12,16 @@ public class SearchCountToSearchCountResponseDtoConverter implements Converter<S
     public SearchCountResponseDto convert(SearchCount searchCount) {
 
         SearchCountResponseDto.Search search = new SearchCountResponseDto.Search.Builder()
-                .hotelId(searchCount.getSearch().getHotelId())
-                .checkIn(searchCount.getSearch().getCheckIn())
-                .checkOut(searchCount.getSearch().getCheckOut())
-                .ages(searchCount.getSearch().getAges())
+                .hotelId(searchCount.search().hotelId())
+                .checkIn(searchCount.search().checkIn())
+                .checkOut(searchCount.search().checkOut())
+                .ages(searchCount.search().ages())
                 .build();
 
         return new SearchCountResponseDto.Builder()
-                .searchId(searchCount.getSearchId())
+                .searchId(searchCount.searchId())
                 .search(search)
-                .count(searchCount.getCount())
+                .count(searchCount.count())
                 .build();
     }
 }

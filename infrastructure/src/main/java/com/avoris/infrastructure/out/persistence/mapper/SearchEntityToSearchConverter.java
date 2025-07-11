@@ -11,11 +11,9 @@ public class SearchEntityToSearchConverter implements Converter<SearchEntity, Se
     @Override
     public Search convert(SearchEntity searchEntity) {
 
-        return new Search.Builder()
-                .hotelId(searchEntity.getHotelId())
-                .checkIn(searchEntity.getCheckIn())
-                .checkOut(searchEntity.getCheckOut())
-                .ages(searchEntity.getAges())
-                .build();
+        return new Search(searchEntity.getHotelId(),
+                searchEntity.getCheckIn(),
+                searchEntity.getCheckOut(),
+                searchEntity.getAges());
     }
 }

@@ -26,21 +26,15 @@ public class Fixtures {
 
     public static Search generateSearch() {
 
-        return new Search.Builder()
-                .hotelId("1234abc")
-                .checkIn(LocalDate.of(2023, 12, 29))
-                .checkOut(LocalDate.of(2023, 12, 31))
-                .ages(List.of(30, 29, 1, 3))
-                .build();
+        return new Search("1234abc",
+                LocalDate.of(2023, 12, 29),
+                LocalDate.of(2023, 12, 31),
+                List.of(30, 29, 1, 3));
     }
 
     public static SearchCount generateSearchCount() {
 
-        return new SearchCount.Builder()
-                .searchId(SEARCH_ID)
-                .search(generateSearch())
-                .count(1L)
-                .build();
+        return new SearchCount(SEARCH_ID, generateSearch(), 10L);
     }
 
     public static SearchEntity generateSearchEntity() {

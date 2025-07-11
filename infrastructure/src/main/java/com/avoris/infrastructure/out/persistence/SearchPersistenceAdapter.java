@@ -37,10 +37,10 @@ public class SearchPersistenceAdapter implements SearchPersistencePort {
                 .map(s -> {
                     SearchEntity searchEntity = new SearchEntity();
                     searchEntity.setSearchId(searchId);
-                    searchEntity.setHotelId(s.getHotelId());
-                    searchEntity.setCheckIn(s.getCheckIn());
-                    searchEntity.setCheckOut(s.getCheckOut());
-                    searchEntity.setAges(s.getAges());
+                    searchEntity.setHotelId(s.hotelId());
+                    searchEntity.setCheckIn(s.checkIn());
+                    searchEntity.setCheckOut(s.checkOut());
+                    searchEntity.setAges(s.ages());
 
                     return searchEntity;
                 })

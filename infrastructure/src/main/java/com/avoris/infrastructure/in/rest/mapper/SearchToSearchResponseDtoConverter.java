@@ -12,7 +12,7 @@ public class SearchToSearchResponseDtoConverter implements Converter<Search, Sea
     public SearchResponseDto convert(Search search) {
 
         return new SearchResponseDto.Builder()
-                .searchId(search.getHotelId())
+                .searchId(search.hotelId())
                 .build();
     }
 }

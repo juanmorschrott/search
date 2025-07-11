@@ -5,9 +5,9 @@ import com.avoris.application.port.in.SearchCountQuery;
 import com.avoris.application.port.in.SearchCreatedEventListener;
 import com.avoris.application.port.out.SearchEventPort;
 import com.avoris.application.port.out.SearchPersistencePort;
+import com.avoris.domain.exception.SearchServiceException;
 import com.avoris.domain.model.Search;
 import com.avoris.domain.model.SearchCount;
-import com.avoris.domain.exception.SearchServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,13 +52,9 @@ public class SearchService implements PublishSearchUseCase, SearchCreatedEventLi
     public SearchCount search(String searchId) {
         try {
             Search search = this.searchPersistencePort.findById(searchId);
-            Long count = this.searchPersistencePort.countSearchesByCriteria(search.getHotelId(), search.getCheckIn(), search.getCheckOut());
+            Long count = this.searchPersistencePort.countSearchesByCriteria(search.hotelId(), search.checkIn(), search.checkOut());
 
-            return new SearchCount.Builder()
-                    .searchId(searchId)
-                    .search(search)
-                    .count(count)
-                    .build();
+            return new SearchCount(searchId, search, count);
         } catch (Exception e) {
             log.error("Failed to search: {}", e.getMessage());
             throw new SearchServiceException();

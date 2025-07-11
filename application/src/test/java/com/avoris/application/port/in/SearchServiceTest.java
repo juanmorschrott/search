@@ -32,8 +32,7 @@ class SearchServiceTest {
 
     @Test
     void publishTest() {
-        Search search = new Search.Builder()
-                .build();
+        Search search = new Search(null, null, null, null);
 
         searchService.publish(search);
 
@@ -43,19 +42,14 @@ class SearchServiceTest {
     @Test
     void listenTest() {
 
-        searchService.listen("searchId", new Search.Builder().build());
+        searchService.listen("searchId", new Search(null, null, null, null));
 
         verify(searchPersistencePort).save(anyString(), any());
     }
 
     @Test
     void searchTest() {
-        Search search = new Search.Builder()
-                .hotelId("fakeHotelId")
-                .checkIn(LocalDate.now())
-                .checkIn(LocalDate.now())
-                .ages(List.of(20, 24))
-                .build();
+        Search search = new Search("fakeHotelId", LocalDate.now(), LocalDate.now(), List.of(20, 24));
 
         when(searchPersistencePort.findById(anyString())).thenReturn(search);
 
