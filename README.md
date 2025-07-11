@@ -1,8 +1,10 @@
 # Search Challenge
 
+Hexagonal Architecture example.
+
 ### Requirements
 
-- Java 21
+- Java > 21
 - Maven > 3.8.X
 - Docker & docker-compose
 
@@ -40,6 +42,6 @@ And browse aggregate-report files
 
 ### Notes
 
-1. For simplicity I only created unit tests
-2. Sometimes I use Spring Converter and sometimes I set the values directly in the builder for simplicity, MapStruct would be a better option
+1. For simplicity, I only created unit tests
+2. Sometimes I use Spring Converter, and sometimes I set the values directly in the builder for simplicity, MapStruct would be a better option
 3. Swagger UI only accepts ISO 8601 for dates. If you want to test the API with Swagger, you must change dates manually
