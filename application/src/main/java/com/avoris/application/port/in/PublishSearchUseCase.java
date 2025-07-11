@@ -1,6 +1,6 @@
 package com.avoris.application.port.in;
 
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 
 /**
  * Complete use case for publishing a search.

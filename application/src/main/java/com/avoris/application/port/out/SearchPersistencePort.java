@@ -1,6 +1,6 @@
 package com.avoris.application.port.out;
 
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,6 @@
 package com.avoris.infrastructure.config;
 
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,7 +1,7 @@
 package com.avoris.infrastructure.in.event;
 
 import com.avoris.application.port.in.SearchCreatedEventListener;
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,13 +9,13 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConsumeSearchEventAdapter {
+public class SearchConsumer {
 
-    private static final Logger log = LoggerFactory.getLogger(ConsumeSearchEventAdapter.class);
+    private static final Logger log = LoggerFactory.getLogger(SearchConsumer.class);
 
     private final SearchCreatedEventListener searchCreatedEventListener;
 
-    public ConsumeSearchEventAdapter(SearchCreatedEventListener searchCreatedEventListener) {
+    public SearchConsumer(SearchCreatedEventListener searchCreatedEventListener) {
         this.searchCreatedEventListener = searchCreatedEventListener;
     }
 

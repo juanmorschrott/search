@@ -2,8 +2,8 @@ package com.avoris.infrastructure.in.rest;
 
 import com.avoris.application.port.in.PublishSearchUseCase;
 import com.avoris.application.port.in.SearchCountQuery;
-import com.avoris.domain.Search;
-import com.avoris.domain.SearchCount;
+import com.avoris.domain.model.Search;
+import com.avoris.domain.model.SearchCount;
 import com.avoris.infrastructure.in.rest.dto.SearchCountResponseDto;
 import com.avoris.infrastructure.in.rest.dto.SearchRequestDto;
 import com.avoris.infrastructure.in.rest.dto.SearchResponseDto;

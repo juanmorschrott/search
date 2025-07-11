@@ -1,6 +1,8 @@
 package com.avoris.domain;
 
 
+import com.avoris.domain.model.Search;
+import com.avoris.domain.model.SearchCount;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -14,8 +16,8 @@ class SearchCountTest {
         String searchId = "search456";
         Search search = new Search.Builder()
                 .hotelId("hotelX")
-                .checkIn(LocalDate.of(2024, 05, 01))
-                .checkOut(LocalDate.of(2024, 05, 07))
+                .checkIn(LocalDate.of(2024, 5, 1))
+                .checkOut(LocalDate.of(2024, 5, 7))
                 .build();
         Long count = 25L;
 
@@ -25,8 +27,8 @@ class SearchCountTest {
                 .count(count)
                 .build();
 
-        assertEquals(searchCount.getSearchId(), searchId);
+        assertEquals(searchId, searchCount.getSearchId());
         assertEquals(searchCount.getSearch(), search);
-        assertEquals(searchCount.getCount(), count);
+        assertEquals(count, searchCount.getCount());
     }
 }

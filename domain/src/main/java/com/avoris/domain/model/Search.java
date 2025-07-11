@@ -1,4 +1,4 @@
-package com.avoris.domain;
+package com.avoris.domain.model;
 
 import java.time.LocalDate;
 import java.util.List;

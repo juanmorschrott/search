@@ -1,6 +1,7 @@
 package com.avoris.domain;
 
 
+import com.avoris.domain.model.Search;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ class SearchTest {
                 .ages(List.of(1, 3, 5))
                 .build();
 
-        assertEquals(search.getHotelId(), "1234abc");
+        assertEquals("1234abc", search.getHotelId());
         assertEquals(search.getCheckIn(), LocalDate.of(2023, 12, 25));
         assertEquals(search.getCheckOut(), LocalDate.of(2023, 12, 30));
         assertEquals(search.getAges(), List.of(1, 3, 5));

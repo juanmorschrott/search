@@ -1,7 +1,7 @@
 package com.avoris.infrastructure.out.event;
 
 import com.avoris.application.port.out.SearchEventPort;
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

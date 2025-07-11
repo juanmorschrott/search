@@ -1,7 +1,7 @@
 package com.avoris.infrastructure.out.persistence;
 
 import com.avoris.application.port.out.SearchPersistencePort;
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 import com.avoris.domain.exception.SearchNotFoundException;
 import com.avoris.infrastructure.out.persistence.entity.SearchEntity;
 import org.slf4j.Logger;

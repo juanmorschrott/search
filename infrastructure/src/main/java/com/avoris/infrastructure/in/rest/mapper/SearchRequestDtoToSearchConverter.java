@@ -1,6 +1,6 @@
 package com.avoris.infrastructure.in.rest.mapper;
 
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 import com.avoris.infrastructure.in.rest.dto.SearchRequestDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

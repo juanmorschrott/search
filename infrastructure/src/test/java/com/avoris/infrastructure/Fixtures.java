@@ -1,7 +1,7 @@
 package com.avoris.infrastructure;
 
-import com.avoris.domain.Search;
-import com.avoris.domain.SearchCount;
+import com.avoris.domain.model.Search;
+import com.avoris.domain.model.SearchCount;
 import com.avoris.infrastructure.in.rest.dto.SearchRequestDto;
 import com.avoris.infrastructure.out.persistence.entity.SearchEntity;
 

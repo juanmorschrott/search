@@ -3,7 +3,7 @@ package com.avoris.application.port.in;
 import com.avoris.application.port.out.SearchEventPort;
 import com.avoris.application.port.out.SearchPersistencePort;
 import com.avoris.application.service.SearchService;
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

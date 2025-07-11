@@ -1,6 +1,6 @@
 package com.avoris.infrastructure.in.rest.mapper;
 
-import com.avoris.domain.SearchCount;
+import com.avoris.domain.model.SearchCount;
 import com.avoris.infrastructure.in.rest.dto.SearchCountResponseDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

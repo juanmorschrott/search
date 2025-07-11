@@ -1,4 +1,4 @@
-package com.avoris.domain;
+package com.avoris.domain.model;
 
 public class SearchCount {
 

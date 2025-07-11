@@ -1,6 +1,6 @@
 package com.avoris.infrastructure.out.event;
 
-import com.avoris.domain.Search;
+import com.avoris.domain.model.Search;
 import com.avoris.infrastructure.Fixtures;
 import com.avoris.infrastructure.in.rest.dto.SearchCountResponseDto;
 import org.junit.jupiter.api.Test;
