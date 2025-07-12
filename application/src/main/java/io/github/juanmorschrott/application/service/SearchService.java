@@ -34,7 +34,7 @@ public class SearchService implements PublishSearchUseCase, SearchCreatedEventLi
             return searchId;
         } catch (Exception e) {
             log.error("Failed to publish search: {}", e.getMessage());
-            throw new SearchServiceException();
+            throw new SearchServiceException(e.getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ public class SearchService implements PublishSearchUseCase, SearchCreatedEventLi
             this.searchPersistencePort.save(searchId, search);
         } catch (Exception e) {
             log.error("Failed to listen search: {}", e.getMessage());
-            throw new SearchServiceException();
+            throw new SearchServiceException(e.getMessage());
         }
     }
 
@@ -57,7 +57,7 @@ public class SearchService implements PublishSearchUseCase, SearchCreatedEventLi
             return new SearchCount(searchId, search, count);
         } catch (Exception e) {
             log.error("Failed to search: {}", e.getMessage());
-            throw new SearchServiceException();
+            throw new SearchServiceException(e.getMessage());
         }
     }
 }

@@ -4,22 +4,34 @@ import io.github.juanmorschrott.application.port.out.SearchEventPort;
 import io.github.juanmorschrott.application.port.out.SearchPersistencePort;
 import io.github.juanmorschrott.application.service.SearchService;
 import io.github.juanmorschrott.domain.model.Search;
+import io.github.juanmorschrott.domain.model.SearchCount;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayName("SearchService unit tests")
 class SearchServiceTest {
+
+    private static final String HOTEL_ID = "hotel-123";
+    private static final LocalDate CHECK_IN = LocalDate.of(2024, 10, 20);
+    private static final LocalDate CHECK_OUT = LocalDate.of(2024, 10, 25);
+    private static final List<Integer> AGES = List.of(30, 5);
 
     @InjectMocks
     private SearchService searchService;
@@ -30,32 +42,59 @@ class SearchServiceTest {
     @Mock
     private SearchEventPort searchEventPort;
 
+    @Captor
+    private ArgumentCaptor<String> stringCaptor;
+
+    @Captor
+    private ArgumentCaptor<Search> searchCaptor;
+
     @Test
-    void publishTest() {
-        Search search = new Search(null, null, null, null);
+    @DisplayName("Should publish an search event correctly")
+    void should_publishAnSearchEvent() {
+        Search searchToPublish = new Search(HOTEL_ID, CHECK_IN, CHECK_OUT, AGES);
 
-        searchService.publish(search);
+        searchService.publish(searchToPublish);
 
-        verify(searchEventPort).sendMessage(anyString(), any());
+        verify(searchEventPort).sendMessage(stringCaptor.capture(), searchCaptor.capture());
+
+        String capturedId = stringCaptor.getValue();
+        Search capturedSearch = searchCaptor.getValue();
+
+        assertThat(capturedId).isNotNull().isNotBlank();
+        assertThat(capturedSearch).isEqualTo(searchToPublish);
+        assertThat(capturedSearch.hotelId()).isEqualTo(HOTEL_ID);
     }
 
     @Test
-    void listenTest() {
+    @DisplayName("Should store a received search from an event")
+    void should_storeReceivedSearch() {
+        String searchId = UUID.randomUUID().toString();
+        Search searchToSave = new Search(HOTEL_ID, CHECK_IN, CHECK_OUT, AGES);
 
-        searchService.listen("searchId", new Search(null, null, null, null));
+        searchService.listen(searchId, searchToSave);
 
-        verify(searchPersistencePort).save(anyString(), any());
+        verify(searchPersistencePort).save(stringCaptor.capture(), searchCaptor.capture());
+
+        assertThat(stringCaptor.getValue()).isEqualTo(searchId);
+        assertThat(searchCaptor.getValue()).isEqualTo(searchToSave);
     }
 
     @Test
-    void searchTest() {
-        Search search = new Search("fakeHotelId", LocalDate.now(), LocalDate.now(), List.of(20, 24));
+    @DisplayName("Should find a search and cound searches by criteria")
+    void should_findSearchAndCount() {
+        String searchId = UUID.randomUUID().toString();
+        Search foundSearch = new Search(HOTEL_ID, CHECK_IN, CHECK_OUT, AGES);
+        SearchCount foundSearchCount = new SearchCount(searchId, foundSearch, 5L);
 
-        when(searchPersistencePort.findById(anyString())).thenReturn(search);
+        when(searchPersistencePort.findById(searchId)).thenReturn(foundSearch);
+        when(searchPersistencePort.countSearchesByCriteria(anyString(), any(), any())).thenReturn(5L);
 
-        searchService.search("fakeSearchId");
+        SearchCount result = searchService.search(searchId);
 
-        verify(searchPersistencePort).findById(anyString());
-        verify(searchPersistencePort).countSearchesByCriteria(anyString(), any(), any());
+        verify(searchPersistencePort).findById(searchId);
+        verify(searchPersistencePort).countSearchesByCriteria(HOTEL_ID, CHECK_IN, CHECK_OUT);
+
+        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(foundSearchCount);
     }
 }

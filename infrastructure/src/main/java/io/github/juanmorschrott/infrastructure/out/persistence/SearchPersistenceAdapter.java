@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static java.util.Objects.isNull;
+
 @Component
 public class SearchPersistenceAdapter implements SearchPersistencePort {
 
@@ -53,6 +55,10 @@ public class SearchPersistenceAdapter implements SearchPersistencePort {
     @Override
     public Search findById(String id) {
         log.info("Searching search by id: {}", id);
+
+        if (isNull(id)) {
+            throw new IllegalArgumentException("Id cannot be null");
+        }
 
         SearchEntity searchEntity = this.searchRepository.findById(id)
                 .orElseThrow(() -> new SearchNotFoundException("Search not found with id: " + id));
