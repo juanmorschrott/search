@@ -26,7 +26,7 @@ class SearchEventAdapterTest {
     private KafkaTemplate<String, SearchCountResponseDto.Search> kafkaTemplate;
 
     @Test
-    public void sendMessageTest() {
+    void sendMessageTest() {
         String searchId = UUID.randomUUID().toString();
         Search search = Fixtures.generateSearch();
 

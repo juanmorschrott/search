@@ -38,7 +38,9 @@ public class SearchCountResponseDto {
         private Search search;
         private Long count;
 
-        public Builder() {}
+        public Builder() {
+            // Default constructor
+        }
 
         public Builder searchId(String searchId) {
             this.searchId = searchId;
@@ -102,7 +104,9 @@ public class SearchCountResponseDto {
             private LocalDate checkOut;
             private List<Integer> ages;
 
-            public Builder() {}
+            public Builder() {
+                // Default constructor
+            }
 
             public Builder hotelId(String hotelId) {
                 this.hotelId = hotelId;

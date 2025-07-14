@@ -20,10 +20,10 @@ public class SearchConsumer {
     }
 
     @KafkaListener(topics = "hotel_availability_searches", groupId = "search-group")
-    public void listen(ConsumerRecord<String, Search> record) {
-        log.info("Received record: {}", record);
-        String searchId = record.key();
-        Search search = record.value();
+    public void listen(ConsumerRecord<String, Search> consumerRecord) {
+        log.info("Received consumerRecord: {}", consumerRecord);
+        String searchId = consumerRecord.key();
+        Search search = consumerRecord.value();
 
         this.searchCreatedEventListener.listen(searchId, search);
     }

@@ -17,7 +17,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class SearchConsumerTest {
+class SearchConsumerTest {
 
     @Mock
     private SearchCreatedEventListener searchCreatedEventListener;
