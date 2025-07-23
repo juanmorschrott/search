@@ -2,7 +2,6 @@ package io.github.juanmorschrott.infrastructure.out.event;
 
 import io.github.juanmorschrott.domain.model.Search;
 import io.github.juanmorschrott.infrastructure.Fixtures;
-import io.github.juanmorschrott.infrastructure.in.rest.dto.SearchCountResponseDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,7 +22,7 @@ class SearchEventAdapterTest {
     private SearchEventAdapter searchEventAdapter;
 
     @Mock
-    private KafkaTemplate<String, SearchCountResponseDto.Search> kafkaTemplate;
+    private KafkaTemplate<String, Search> kafkaTemplate;
 
     @Test
     void sendMessageTest() {

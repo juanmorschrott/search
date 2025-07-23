@@ -3,6 +3,7 @@ package io.github.juanmorschrott.bootstrap.config;
 import io.github.juanmorschrott.application.port.in.PublishSearchUseCase;
 import io.github.juanmorschrott.application.port.in.SearchCountQuery;
 import io.github.juanmorschrott.application.port.in.SearchCreatedEventListener;
+import io.github.juanmorschrott.application.port.in.SearchQuery;
 import io.github.juanmorschrott.application.port.out.SearchEventPort;
 import io.github.juanmorschrott.application.port.out.SearchPersistencePort;
 import io.github.juanmorschrott.application.service.SearchService;
@@ -24,6 +25,11 @@ public class ApplicationConfig {
 
     @Bean
     SearchCountQuery searchCountQuery(SearchService searchService) {
+        return searchService;
+    }
+
+    @Bean
+    SearchQuery searchQuery(SearchService searchService) {
         return searchService;
     }
 

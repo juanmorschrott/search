@@ -4,7 +4,6 @@ import io.github.juanmorschrott.application.port.out.SearchEventPort;
 import io.github.juanmorschrott.application.port.out.SearchPersistencePort;
 import io.github.juanmorschrott.application.service.SearchService;
 import io.github.juanmorschrott.domain.model.Search;
-import io.github.juanmorschrott.domain.model.SearchCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,8 +18,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -80,21 +77,29 @@ class SearchServiceTest {
     }
 
     @Test
-    @DisplayName("Should find a search and cound searches by criteria")
-    void should_findSearchAndCount() {
+    @DisplayName("Debe encontrar una búsqueda por ID")
+    void should_findSearchById() {
         String searchId = UUID.randomUUID().toString();
         Search foundSearch = new Search(HOTEL_ID, CHECK_IN, CHECK_OUT, AGES);
-        SearchCount foundSearchCount = new SearchCount(searchId, foundSearch, 5L);
 
         when(searchPersistencePort.findById(searchId)).thenReturn(foundSearch);
-        when(searchPersistencePort.countSearchesByCriteria(anyString(), any(), any())).thenReturn(5L);
 
-        SearchCount result = searchService.search(searchId);
+        Search result = searchService.getById(searchId);
 
         verify(searchPersistencePort).findById(searchId);
-        verify(searchPersistencePort).countSearchesByCriteria(HOTEL_ID, CHECK_IN, CHECK_OUT);
-
         assertThat(result).isNotNull();
-        assertThat(result).isEqualTo(foundSearchCount);
+        assertThat(result).isEqualTo(foundSearch);
+    }
+
+    @Test
+    @DisplayName("Debe contar búsquedas por criterios")
+    void should_countSearchesByCriteria() {
+        long expectedCount = 5L;
+        when(searchPersistencePort.countSearchesByCriteria(HOTEL_ID, CHECK_IN, CHECK_OUT)).thenReturn(expectedCount);
+
+        long count = searchService.search(HOTEL_ID, CHECK_IN, CHECK_OUT);
+
+        verify(searchPersistencePort).countSearchesByCriteria(HOTEL_ID, CHECK_IN, CHECK_OUT);
+        assertThat(count).isEqualTo(expectedCount);
     }
 }

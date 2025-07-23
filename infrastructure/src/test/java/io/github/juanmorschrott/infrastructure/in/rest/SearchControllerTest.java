@@ -4,9 +4,7 @@ package io.github.juanmorschrott.infrastructure.in.rest;
 import io.github.juanmorschrott.application.port.in.PublishSearchUseCase;
 import io.github.juanmorschrott.application.port.in.SearchCountQuery;
 import io.github.juanmorschrott.domain.model.Search;
-import io.github.juanmorschrott.domain.model.SearchCount;
 import io.github.juanmorschrott.infrastructure.Fixtures;
-import io.github.juanmorschrott.infrastructure.in.rest.dto.SearchCountResponseDto;
 import io.github.juanmorschrott.infrastructure.in.rest.dto.SearchRequestDto;
 import io.github.juanmorschrott.infrastructure.in.rest.dto.SearchResponseDto;
 import org.junit.jupiter.api.Test;
@@ -15,6 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.convert.ConversionService;
+
+import java.time.LocalDate;
 
 import static io.github.juanmorschrott.infrastructure.Fixtures.SEARCH_ID;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -56,16 +56,15 @@ class SearchControllerTest {
 
     @Test
     void testCount() {
-        SearchCount searchCount = Fixtures.generateSearchCount();
-        SearchCountResponseDto searchCountResponseDto = new SearchCountResponseDto();
+        String hotelId = "hotel-123";
+        LocalDate checkIn = LocalDate.of(2024, 6, 1);
+        LocalDate checkOut = LocalDate.of(2024, 6, 5);
 
-        when(searchCountQuery.search(SEARCH_ID)).thenReturn(searchCount);
-        when(conversionService.convert(searchCount, SearchCountResponseDto.class)).thenReturn(searchCountResponseDto);
+        when(searchCountQuery.search(hotelId, checkIn, checkOut)).thenReturn(2L);
 
-        SearchCountResponseDto response = searchController.count(SEARCH_ID);
+        long response = searchController.count(hotelId, checkIn, checkOut);
 
-        verify(searchCountQuery).search(SEARCH_ID);
-        verify(conversionService).convert(searchCount, SearchCountResponseDto.class);
-        assertThat(response).isEqualTo(searchCountResponseDto);
+        verify(searchCountQuery).search(hotelId, checkIn, checkOut);
+        assertThat(response).isEqualTo(2L);
     }
 }

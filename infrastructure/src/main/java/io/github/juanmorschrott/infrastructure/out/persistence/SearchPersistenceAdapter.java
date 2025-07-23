@@ -1,8 +1,8 @@
 package io.github.juanmorschrott.infrastructure.out.persistence;
 
 import io.github.juanmorschrott.application.port.out.SearchPersistencePort;
-import io.github.juanmorschrott.domain.model.Search;
 import io.github.juanmorschrott.domain.exception.SearchNotFoundException;
+import io.github.juanmorschrott.domain.model.Search;
 import io.github.juanmorschrott.infrastructure.out.persistence.entity.SearchEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

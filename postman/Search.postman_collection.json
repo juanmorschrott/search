@@ -32,7 +32,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/search",
+					"raw": "localhost:8080/api/v1/searches",
 					"host": [
 						"localhost"
 					],
@@ -40,7 +40,28 @@
 					"path": [
 						"api",
 						"v1",
-						"search"
+						"searches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/searches/cd41846e-bf49-4797-8eae-d58c83b318f0",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"searches",
+						"cd41846e-bf49-4797-8eae-d58c83b318f0"
 					]
 				}
 			},
@@ -52,7 +73,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/count?searchId=1bc34a0d-8889-4806-adc7-4ed73d905785",
+					"raw": "localhost:8080/api/v1/searches/count?hotelId=1234abc&checkIn=29/12/2025&checkOut=31/12/2025",
 					"host": [
 						"localhost"
 					],
@@ -60,12 +81,21 @@
 					"path": [
 						"api",
 						"v1",
+						"searches",
 						"count"
 					],
 					"query": [
 						{
-							"key": "searchId",
-							"value": "1bc34a0d-8889-4806-adc7-4ed73d905785"
+							"key": "hotelId",
+							"value": "1234abc"
+						},
+						{
+							"key": "checkIn",
+							"value": "29/12/2025"
+						},
+						{
+							"key": "checkOut",
+							"value": "31/12/2025"
 						}
 					]
 				}

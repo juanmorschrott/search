@@ -3,17 +3,18 @@ package io.github.juanmorschrott.application.service;
 import io.github.juanmorschrott.application.port.in.PublishSearchUseCase;
 import io.github.juanmorschrott.application.port.in.SearchCountQuery;
 import io.github.juanmorschrott.application.port.in.SearchCreatedEventListener;
+import io.github.juanmorschrott.application.port.in.SearchQuery;
 import io.github.juanmorschrott.application.port.out.SearchEventPort;
 import io.github.juanmorschrott.application.port.out.SearchPersistencePort;
 import io.github.juanmorschrott.domain.exception.SearchServiceException;
 import io.github.juanmorschrott.domain.model.Search;
-import io.github.juanmorschrott.domain.model.SearchCount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
-public class SearchService implements PublishSearchUseCase, SearchCreatedEventListener, SearchCountQuery {
+public class SearchService implements PublishSearchUseCase, SearchCreatedEventListener, SearchQuery, SearchCountQuery {
 
     private static final Logger log = LoggerFactory.getLogger(SearchService.class);
 
@@ -49,12 +50,14 @@ public class SearchService implements PublishSearchUseCase, SearchCreatedEventLi
     }
 
     @Override
-    public SearchCount search(String searchId) {
-        try {
-            Search search = this.searchPersistencePort.findById(searchId);
-            Long count = this.searchPersistencePort.countSearchesByCriteria(search.hotelId(), search.checkIn(), search.checkOut());
+    public Search getById(String searchId) {
+        return this.searchPersistencePort.findById(searchId);
+    }
 
-            return new SearchCount(searchId, search, count);
+    @Override
+    public long search(String hotelId, LocalDate checkIn, LocalDate checkOut) {
+        try {
+            return this.searchPersistencePort.countSearchesByCriteria(hotelId, checkIn, checkOut);
         } catch (Exception e) {
             log.error("Failed to search: {}", e.getMessage());
             throw new SearchServiceException(e.getMessage());

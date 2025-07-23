@@ -1,9 +1,9 @@
 package io.github.juanmorschrott.infrastructure.in.rest.dto;
 
-import io.github.juanmorschrott.infrastructure.in.rest.validator.CheckInBeforeCheckOut;
-import io.github.juanmorschrott.infrastructure.in.rest.validator.NoPastDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.juanmorschrott.infrastructure.in.rest.validator.CheckInBeforeCheckOut;
+import io.github.juanmorschrott.infrastructure.in.rest.validator.NoPastDate;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
